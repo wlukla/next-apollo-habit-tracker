@@ -1,7 +1,25 @@
+import React from 'react';
+import { useQuery } from '@apollo/react-hooks';
+import gql from 'graphql-tag';
+
 import Layout from '../components/Layout';
 import withApollo from '../lib/apollo';
 
+const HELLO_QUERY = gql`
+  query HelloQuery {
+    sayHello
+  }
+`;
+
 const Home = () => {
+  const { data, loading, error } = useQuery(HELLO_QUERY);
+
+  if (loading) {
+    return <div />;
+  }
+
+  console.log(data);
+
   return (
     <Layout>
       <h1 className="title">
