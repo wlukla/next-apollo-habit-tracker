@@ -11,6 +11,12 @@ const Layout = ({ children }) => (
     </Head>
     <Nav />
     <main>{children}</main>
+    <style jsx global>{`
+      * {
+        margin: 0;
+        padding: 0;
+      }
+    `}</style>
   </div>
 );
 

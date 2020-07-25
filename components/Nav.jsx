@@ -22,8 +22,26 @@ const Nav = () => (
           padding: 0;
           display: flex;
           flex-direction: row;
-          justify-content: space-between;
+          justify-content: flex-start;
           list-style: none;
+        }
+
+        a {
+          margin-right: 30px;
+          font-family: Helvetica, Arial, sans-serif;
+          text-decoration: none;
+          font-size: 20px;
+          color: #000000;
+        }
+
+        a :hover {
+          color: #333333;
+        }
+
+        nav {
+          padding: 20px;
+          margin: 0;
+          background-color: darkgrey;
         }
       `}
     </style>
