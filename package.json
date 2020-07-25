@@ -15,6 +15,7 @@
     "apollo-server-micro": "^2.16.0",
     "formik": "^2.1.5",
     "graphql-tag": "^2.10.4",
+    "mongoose": "^5.9.25",
     "next": "9.4.4",
     "react": "16.13.1",
     "react-dom": "16.13.1"
