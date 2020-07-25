@@ -1,8 +1,13 @@
 import React from 'react';
 
-const HabitButton = ({ isChecked }) => (
+const HabitButton = ({ isChecked, date }) => (
   <>
-    <button>{isChecked ? '✅' : '❌'}</button>
+    <div>
+      <span className="habit-button-wrapper">
+        {date.getDate()}/{date.getMonth() + 1}
+      </span>
+      <button>{isChecked ? '✅' : '❌'}</button>
+    </div>
 
     <style jsx>
       {`
@@ -18,6 +23,13 @@ const HabitButton = ({ isChecked }) => (
           border: 0;
           padding: 0;
           cursor: pointer;
+        }
+
+        .habit-button-wrapper {
+          margin-top: 10px;
+          display: flex;
+          flex-direction: column;
+          align-items: center;
         }
       `}
     </style>
