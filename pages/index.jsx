@@ -1,6 +1,5 @@
-import Head from 'next/head';
-
 import Layout from '../components/Layout';
+import withApollo from '../lib/apollo';
 
 const Home = () => {
   return (
@@ -44,4 +43,4 @@ const Home = () => {
   );
 };
 
-export default Home;
+export default withApollo(Home);
