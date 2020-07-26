@@ -13,13 +13,13 @@ const getLastSevenDays = () => {
   return dates;
 };
 
-const Habit = () => {
+const Habit = ({ habit }) => {
   const dates = getLastSevenDays();
 
   return (
     <article>
       <header>
-        <h3>Habit Title</h3>
+        <h3>{habit.name}</h3>
       </header>
       <main>
         <div className="habit-buttons-wrapper">
