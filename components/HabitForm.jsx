@@ -13,16 +13,19 @@ const ADD_HABIT = gql`
 `;
 
 const HabitForm = () => {
-  const [addHabit] = useMutation(ADD_HABIT);
+  const [addHabit] = useMutation(ADD_HABIT, {
+    refetchQueries: ['getHabitsList'],
+  });
+
+  const handleFormSubmit = async (values, { setSubmitting }) => {
+    await addHabit({ variables: { habit: { name: values.habitTitle } } });
+
+    setSubmitting(false);
+  };
 
   return (
     <div className="form-wrapper">
-      <Formik
-        initialValues={{ habitTitle: '' }}
-        onSubmit={(values) => {
-          addHabit({ variables: { habit: { name: values.habitTitle } } });
-        }}
-      >
+      <Formik initialValues={{ habitTitle: '' }} onSubmit={handleFormSubmit}>
         {({ isSubmitting }) => (
           <Form>
             <Field type="text" name="habitTitle" />
