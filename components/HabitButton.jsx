@@ -36,7 +36,11 @@ const HabitButton = ({ habit, date }) => {
     refetchQueries: ['getHabitsList'],
   });
 
-  const found = false;
+  const foundDate = habit.events.find((event) => {
+    const eventDate = new Date(event.date);
+
+    return eventDate.getDate() === date.getDate();
+  });
 
   return (
     <>
@@ -44,13 +48,13 @@ const HabitButton = ({ habit, date }) => {
         <span className="habit-button-wrapper">
           {date.getDate()}/{date.getMonth() + 1}
         </span>
-        {found ? (
+        {foundDate ? (
           <button
             onClick={() =>
               removeEvent({
                 variables: {
                   habitId: habit._id,
-                  eventId: 'some_random_id',
+                  eventId: foundDate._id,
                 },
               })
             }
