@@ -1,13 +1,26 @@
 import React from 'react';
 import { Form, Formik, Field } from 'formik';
+import gql from 'graphql-tag';
+import { useMutation } from '@apollo/react-hooks';
+
+const ADD_HABIT = gql`
+  mutation addHabit($habit: HabitInput) {
+    addHabit(habit: $habit) {
+      _id
+      name
+    }
+  }
+`;
 
 const HabitForm = () => {
+  const [addHabit] = useMutation(ADD_HABIT);
+
   return (
     <div className="form-wrapper">
       <Formik
         initialValues={{ habitTitle: '' }}
         onSubmit={(values) => {
-          console.log(values);
+          addHabit({ variables: { habit: { name: values.habitTitle } } });
         }}
       >
         {({ isSubmitting }) => (
