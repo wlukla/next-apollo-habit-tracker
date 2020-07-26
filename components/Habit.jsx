@@ -24,7 +24,12 @@ const Habit = ({ habit }) => {
       <main>
         <div className="habit-buttons-wrapper">
           {dates.map((date) => (
-            <HabitButton key={date.getDay()} date={date} isChecked />
+            <HabitButton
+              key={date.getDay()}
+              date={date}
+              habit={habit}
+              event={habit.events}
+            />
           ))}
         </div>
       </main>

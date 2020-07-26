@@ -9,15 +9,38 @@ const GET_HABITS_LIST = gql`
     habits {
       _id
       name
+      events {
+        _id
+        date
+      }
     }
   }
 `;
 
 const HabitList = () => {
-  const { data, loading } = useQuery(GET_HABITS_LIST);
+  const { data, loading, error } = useQuery(GET_HABITS_LIST);
 
   if (loading) {
     return <section />;
+  }
+
+  if (error) {
+    return (
+      <section>
+        <h3>Something wrong happened! We are already working on fixing it</h3>
+
+        <style jsx>
+          {`
+            section {
+              width: 100%;
+              display: flex;
+              flex-direction: column;
+              align-items: center;
+            }
+          `}
+        </style>
+      </section>
+    );
   }
 
   return (

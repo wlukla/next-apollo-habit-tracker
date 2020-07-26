@@ -28,14 +28,49 @@ const REMOVE_EVENT = gql`
   }
 `;
 
-const HabitButton = ({ isChecked, date }) => {
+const HabitButton = ({ habit, date }) => {
+  const [addEvent] = useMutation(ADD_EVENT, {
+    refetchQueries: ['getHabitsList'],
+  });
+  const [removeEvent] = useMutation(REMOVE_EVENT, {
+    refetchQueries: ['getHabitsList'],
+  });
+
+  const found = false;
+
   return (
     <>
       <div>
         <span className="habit-button-wrapper">
           {date.getDate()}/{date.getMonth() + 1}
         </span>
-        <button>{isChecked ? '✅' : '❌'}</button>
+        {found ? (
+          <button
+            onClick={() =>
+              removeEvent({
+                variables: {
+                  habitId: habit._id,
+                  eventId: 'some_random_id',
+                },
+              })
+            }
+          >
+            ✅
+          </button>
+        ) : (
+          <button
+            onClick={() =>
+              addEvent({
+                variables: {
+                  habitId: habit._id,
+                  date,
+                },
+              })
+            }
+          >
+            ❌
+          </button>
+        )}
       </div>
 
       <style jsx>
